@@ -1,6 +1,6 @@
 # go_tool工具库
 >这是一个go工具库库封装，本人专用
->This is a tool library for golang.
+><p>This is a tool library for golang.
 
 ## 使用(Usage)
 ```
@@ -16,12 +16,9 @@ go get -u -v github.com/hunterhug/go_tool
 ## 例子(Example)
 >See the example
 
-## 读我（Read Me)
->此库时刻更新中..
-><p>Updating...
-
-
 ## 作者（Author）
 >http://www.lenggirl.com
 ><p>http://beauty.lenggirl.com
  
+>此库时刻更新中..
+><p>Updating...
