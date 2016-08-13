@@ -8,19 +8,20 @@ go get -u -v github.com/hunterhug/go_tool
 ```
 
 ## 包含(Include)
-1. image 图像处理库(image deal library)
-2. spider 爬虫封装库(spider library)
-3. dbs   数据库封装库(database library)
-4. util 文件/时间等杂项库（some small library)
+1. image 图像处理库 **(image deal library)**
+2. spider 爬虫封装库 **(spider library)**
+3. dbs   数据库封装库 **(database library)**
+4. util 文件/时间等杂项库 **（some small library)**
 
 ## 例子(Example)
-See the example
+>See the example
 
 ## 读我（Read Me)
-此库时刻更新中..
-Updating...
+>此库时刻更新中..
+><p>Updating...
 
 
 ## 作者（Author）
-http://www.lenggirl.com http://beauty.lenggirl.com
+>http://www.lenggirl.com
+><p>http://beauty.lenggirl.com
  
