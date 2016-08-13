@@ -1,0 +1,166 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<HTML>
+	<HEAD>
+		<title>高校毕业生接收情况查询</title>
+		<LINK href="../images/blue/Styles/Style.css" type="text/css" rel="stylesheet"/>
+		<script type="text/javascript" >
+			document.onkeydown = function()
+			{   			
+				if(event.keyCode ==13){			                       
+					document.getElementById("BtnSearch").click();		        
+				}
+			}
+		
+			function CheckQueryCondition()
+			{
+				var strName = document.getElementById("TxtName").value;
+				var strIDCard = document.getElementById("TxtIDCard").value;
+				if(strName!="" && strIDCard=="")
+				{
+					alert('身份证号不能为空！');	
+					return false;
+				}
+				else if(strName=="" && strIDCard!="")
+				{
+					alert('姓名不能为空！');	
+					return false;
+				}
+				return true;				
+			} 
+				
+		</script>
+	</HEAD>
+	<body>
+		<form name="Form1" method="post" action="./QueryGraduateApply.aspx" id="Form1">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+
+<script type="text/javascript">
+<!--
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+// -->
+</script>
+
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="388CFD34" />
+			<!--外层控制显示宽度的Table 开始-->
+			<div showmessagebox="True" showsummary="False" id="ValidationSummary1" style="color:Red;Z-INDEX:101;LEFT:24px;POSITION:absolute;TOP:584px;display:none;">
+
+</div>
+			<TABLE id="Table1" cellSpacing="0" cellPadding="0" width="100%" border="0">
+				<tr>
+					<td class="PageHeader" colSpan="2">高校毕业生接收情况查询 
+						<!--分割线-->
+						<HR class="PageHeaderLine" width="100%" SIZE="1">
+					</td>
+				</tr>
+				<!--间隔-->
+				<tr>
+					<td colSpan="2" height="10"></td>
+				</tr>
+				<!--查询条件区，条件排成2列（若条件数为奇数，则第一行放一列）-->
+				<tr>
+					<td colSpan="2">
+						<!--显示查询条件的Table 开始-->
+						<TABLE class="text" cellSpacing="4" cellPadding="0" width="100%" border="0">
+							<TR>
+								<td>申报年份</td>
+								<td><select name="DDApplyYear" id="DDApplyYear" tabindex="1" zbind="*-2">
+	<option value="">--请选择--</option>
+	<option selected="selected" value="2016">2016</option>
+	<option value="2015">2015</option>
+	<option value="2014">2014</option>
+	<option value="2013">2013</option>
+	<option value="2012">2012</option>
+	<option value="2011">2011</option>
+	<option value="2010">2010</option>
+	<option value="2009">2009</option>
+	<option value="2008">2008</option>
+	<option value="2007">2007</option>
+	<option value="2006">2006</option>
+
+</select></td>
+								<td>用人单位</td>
+								<td><input name="TxtCorpName" type="text" id="TxtCorpName" tabindex="2" class="textbox" zbind="CorpName" style="width:200px;" /></td>
+							</TR>
+							<TR>
+								<td width="80" class="text">姓名</td>
+								<td width="180"><input name="TxtName" type="text" id="TxtName" tabindex="3" class="textbox" zbind="GraduateName" style="width:150px;" /></td>
+								<TD class="text" noWrap width="80">身份证号</TD>
+								<TD><input name="TxtIDCard" type="text" id="TxtIDCard" tabindex="4" class="textbox" zbind="IDCard" style="width:200px;" /></TD>
+								<td></td>
+							</TR>
+							<TR>
+								<td class="text">学校</td>
+								<td><input name="TxtCollege" type="text" id="TxtCollege" tabindex="5" class="textbox" zbind="College" style="width:150px;" /></td>
+								<td><input type="submit" name="BtnSearch" value="查 询" onclick="return CheckQueryCondition();" language="javascript" id="BtnSearch" tabindex="6" class="button" /></td>
+							</TR>
+							<tr>
+								<td colspan="5" height="10"><FONT face="宋体">
+										<span id="LblMsg" class="hint"></span></FONT></td>
+							</tr>
+						</TABLE>
+					</td>
+				</tr>
+				<!--间隔-->
+				<tr>
+					<td colSpan="2" height="5"><FONT face="宋体"></FONT></td>
+				</tr>
+				<tr>
+					<td colSpan="2">
+						<table width="100%">
+							<tr>
+								<td>
+									<table class="listtable" cellspacing="1" cellpadding="0" rules="all" border="0" id="DDDeclareInfo" style="background-color:Silver;border-width:0px;width:100%;">
+	<tr class="ListHeader" align="center">
+		<td>企业名称</td><td>姓名</td><td>毕业院校</td><td>专业</td><td>学历</td><td>审批时间</td>
+	</tr><tr class="ListItem">
+		<td>招商银行股份有限公司广州分行</td><td>陈伟岸</td><td>广东金融学院</td><td>保险实务</td><td>本科</td><td style="width:60px;">2016-08-12</td>
+	</tr><tr class="ListAltern">
+		<td>广州南方人才资源租赁中心</td><td>郑长弘</td><td>五邑大学</td><td>纺织工程</td><td>本科</td><td style="width:60px;">2016-08-12</td>
+	</tr><tr class="ListItem">
+		<td>广州市科运商务信息咨询有限公司</td><td>孟琰</td><td>中山大学</td><td>财务管理</td><td>本科</td><td style="width:60px;">2016-08-12</td>
+	</tr><tr class="ListAltern">
+		<td>广州市文化广电新闻出版局</td><td>朱珈慧</td><td>广东警官学院</td><td>行政管理</td><td>本科</td><td style="width:60px;">2016-08-12</td>
+	</tr><tr class="ListItem">
+		<td>广州市白云区文化馆</td><td>肖可雅</td><td>星海音乐学院</td><td>音乐学</td><td>本科</td><td style="width:60px;">2016-08-12</td>
+	</tr><tr class="ListAltern">
+		<td>招商银行股份有限公司广州分行</td><td>董元菁</td><td>广东金融学院</td><td>信息管理与信息系统(金融智能与信息管理实验班)</td><td>本科</td><td style="width:60px;">2016-08-12</td>
+	</tr><tr class="ListItem">
+		<td>广东省建筑设计研究院</td><td>才世伟</td><td>广州大学</td><td>建筑设计及其理论</td><td>硕士研究生</td><td style="width:60px;">2016-08-12</td>
+	</tr><tr class="ListAltern">
+		<td>招商银行股份有限公司广州分行</td><td>陈富琳</td><td>中央财经大学</td><td>国际经济与贸易</td><td>本科</td><td style="width:60px;">2016-08-12</td>
+	</tr><tr class="ListItem">
+		<td>广州眺创信息咨询有限公司</td><td>李水玲</td><td>仲恺农业工程学院</td><td>财务管理</td><td>本科</td><td style="width:60px;">2016-08-12</td>
+	</tr><tr class="ListAltern">
+		<td>广州眺拓电子商务有限公司</td><td>周鑫</td><td>南方医科大学</td><td>生物医学工程</td><td>本科</td><td style="width:60px;">2016-08-12</td>
+	</tr><tr class="ListPager" align="right">
+		<td colspan="6"><a href="javascript:__doPostBack(&#39;DDDeclareInfo$_ctl14$_ctl0&#39;,&#39;&#39;)">1</a>&nbsp;<a href="javascript:__doPostBack(&#39;DDDeclareInfo$_ctl14$_ctl1&#39;,&#39;&#39;)">2</a>&nbsp;<a href="javascript:__doPostBack(&#39;DDDeclareInfo$_ctl14$_ctl2&#39;,&#39;&#39;)">3</a>&nbsp;<a href="javascript:__doPostBack(&#39;DDDeclareInfo$_ctl14$_ctl3&#39;,&#39;&#39;)">4</a>&nbsp;<a href="javascript:__doPostBack(&#39;DDDeclareInfo$_ctl14$_ctl4&#39;,&#39;&#39;)">5</a>&nbsp;<span>6</span>&nbsp;<a href="javascript:__doPostBack(&#39;DDDeclareInfo$_ctl14$_ctl6&#39;,&#39;&#39;)">7</a>&nbsp;<a href="javascript:__doPostBack(&#39;DDDeclareInfo$_ctl14$_ctl7&#39;,&#39;&#39;)">8</a>&nbsp;<a href="javascript:__doPostBack(&#39;DDDeclareInfo$_ctl14$_ctl8&#39;,&#39;&#39;)">9</a>&nbsp;<a href="javascript:__doPostBack(&#39;DDDeclareInfo$_ctl14$_ctl9&#39;,&#39;&#39;)">10</a>&nbsp;<a href="javascript:__doPostBack(&#39;DDDeclareInfo$_ctl14$_ctl10&#39;,&#39;&#39;)">...</a></td>
+	</tr>
+</table></td>
+							</tr>
+						</table>
+					</td> 
+				</tr>
+			</TABLE>
+		
+<script type="text/javascript">
+<!--
+var Page_ValidationSummaries =  new Array(document.getElementById("ValidationSummary1"));
+// -->
+</script>
+</form>
+	</body>
+</HTML>
