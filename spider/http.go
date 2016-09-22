@@ -11,10 +11,35 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"github.com/op/go-logging"
 )
 
+var log = logging.MustGetLogger("go_tool_spider")
+var format = logging.MustStringFormatter(
+	"%{color}%{time:15:04:05.000} %{shortfunc} [%{level:.5s}]:%{color:reset} %{message}",
+)
+
+type  Spider struct {
+	Url      string
+	Method string //Get Post
+	Header   map[string][]string
+	Data map[string][]string
+	Wait int
+}
+
+func (this *Spider) SetLogLevel(level string) {
+	lvl, _ := logging.LogLevel(level)
+	logging.SetLevel(lvl, "go_tool_spider")
+}
+
+func (this *Spider) Go()(body []byte, e error){
+	if this.Method=="post"{
+		return this.Get()
+	}
+
+}
 //可以允许添加自定义头部
-func Get(url string, resheader map[string][]string) (body []byte, e error) {
+func (this *Spider)  Get() (body []byte, e error) {
 	WaitM()
 
 	log.Println("GET链接:" + url)
@@ -48,7 +73,7 @@ func Get(url string, resheader map[string][]string) (body []byte, e error) {
 }
 
 // Post附带信息
-func Post(url string, postValues url.Values, header map[string][]string,printpostdata bool) (body []byte, e error) {
+func (this *Spider)  Post(url string, postValues url.Values, header map[string][]string, printpostdata bool) (body []byte, e error) {
 	WaitM()
 	log.Println("POST链接:" + url)
 	if printpostdata {

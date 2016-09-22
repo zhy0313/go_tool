@@ -1,7 +1,7 @@
 package image
 
 import (
-	//"errors"
+	"errors"
 	"github.com/hunterhug/go-image/graphics"
 	"image"
 	"image/jpeg"
@@ -9,6 +9,13 @@ import (
 	"os"
 	"strings"
 )
+
+var (
+	ExtNotSupportError = errors.New("ext of filename not support")
+	FileNameError = errors.New("filename error")
+	FileExistError = errors.New("File already exist error")
+)
+
 //按宽度和高度进行比例缩放
 func ThumbnailF2F(filename string, savepath string, width int, height int) (err error) {
 	dst := image.NewRGBA(image.Rect(0, 0, width, height))
@@ -56,9 +63,9 @@ func RealImageName(filename string) (filenewname string, err error) {
 //文件改名,如果force为假,且新的文件名已经存在,那么抛出错误
 func ChangeImageName(oldname string, newname string, force bool) (err error) {
 	if !force {
-		_,err = os.Open(newname)
+		_, err = os.Open(newname)
 		if err == nil {
-			err=FileExistError
+			err = FileExistError
 			return
 		}
 	}

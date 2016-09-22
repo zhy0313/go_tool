@@ -29,14 +29,15 @@ func SaveTofile(filepath string, content []byte) error {
 
 //根据传入文件夹名字递归新建文件夹
 func MakeDir(filedir string) error {
-	return os.MkdirAll(filedir, 777)
+	return os.MkdirAll(filedir, 0777)
 }
 
 //根据传入文件名，递归创建文件夹
+// ./dir/filename  /home/dir/filename
 func MakeDirByFile(filepath string) error {
 	temp := strings.Split(filepath, "/")
-	if len(temp) < 2 {
-		return errors.New("请传入类似filedir/filename形式的文件名")
+	if len(temp) <= 2 {
+		return errors.New("please input complete file name like ./dir/filename or /home/dir/filename")
 	}
 	dirpath := strings.Join(temp[0:len(temp) - 1], "/")
 	return MakeDir(dirpath)

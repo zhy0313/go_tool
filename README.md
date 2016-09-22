@@ -1,24 +1,28 @@
-# go_tool工具库
->这是一个go工具库库封装，本人专用
-><p>This is a tool library for golang.
+#Go_tool
+>This is a tool library for Golang.Dont't worry about not understant it!
+>All comment writes by English,Ahaha~~ 
 
-## 使用(Usage)
+>Oh,I think some will be Chinese.
+
+## Usage
 ```
 go get -u -v github.com/hunterhug/go_tool
 ```
 
-## 包含(Include)
+## Include
 1. image 图像处理库 **(image deal library)**
 2. spider 爬虫封装库 **(spider library)**
 3. dbs   数据库封装库 **(database library)**
-4. util 文件/时间等杂项库 **（some small library)**
+4. http 网络库　**(network library)**
+4. util 文件/时间等杂项库 **(some small library)**
 
-## 例子(Example)
->See the example
+## How to use
+>You all can read the test golang file.And I recomment use IDE **pycharm** which python language use,
+can also install The Go plugin.
 
-## 作者（Author）
->http://www.lenggirl.com
-><p>http://beauty.lenggirl.com
+## Author
+>一只尼玛
+
+>My website:http://www.lenggirl.com
  
->此库时刻更新中..
 ><p>Updating...
