@@ -99,6 +99,7 @@ func SaveImage(path string, img *image.RGBA, filetype string) (err error) {
 	} else {
 		err = ExtNotSupportError
 	}
+	defer file.Close()
 	return
 }
 
