@@ -2,15 +2,23 @@ package spider
 
 import (
 	"testing"
-	"fmt"
 )
 
 func TestSpider(t *testing.T) {
-	url := "http://www.baidu.com"
-	body, err := Get(url, nil)
+	spiders := Spider{}
+	spiders.Method = "get"
+	spiders.Wait = 2
+	spiders.Url = "http://www.lenggirl.com"
+
+	spiders.SetLogLevel("DEBUg")
+
+	spiders.NewHeader("", "www.baidu.com", "")
+	body, err := spiders.Go()
 	if err != nil {
-		fmt.Println(err.Error())
+		spiders.Log().Error(err)
 	} else {
-		fmt.Println(string(body))
+		spiders.Log().Infof("%s", string(body))
 	}
+	err = TooSortSizes(body, 500)
+	spiders.Log().Error(err.Error())
 }

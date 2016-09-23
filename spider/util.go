@@ -7,24 +7,20 @@ package spider
 
 import (
 	"time"
-	"log"
 	"net/http"
+	"fmt"
+	"errors"
 )
 
 func Wait(waittime time.Duration) {
-	if waittime < 0 {
+	if waittime <= 0 {
 		return
 	} else {
-		log.Printf("暂停%d秒～～", waittime)
+		Log.Debugf("Stop %d Second～～", waittime)
 		time.Sleep(waittime * time.Second)
 	}
 }
 
-//默认休眠时间
-func WaitM() {
-	log.Printf("暂停%d秒～～", DeadTime)
-	time.Sleep(DeadTime * time.Second)
-}
 
 //Header map[string][]string
 func CopyM(h http.Header) http.Header {
@@ -38,19 +34,16 @@ func CopyM(h http.Header) http.Header {
 }
 
 
-//文件太小，访问太过频繁，死！！！
-func TooSortSizes(data []byte, sizes float64) {
+//文件太小，访问太过频繁，死！！！kb
+func TooSortSizes(data []byte, sizes float64) error {
 	if float64(len(data)) / 1000 < sizes {
-		log.Printf("文件大小:%d字节,所以死掉了", len(data))
-		panic("抓完了")
+		return errors.New(fmt.Sprintf("FileSize:%d bytes,%d kb < %f kb dead too sort", len(data), len(data) / 1000, sizes))
 	}
+	return nil
 }
 
 //打印映射
 func OutputMaps(info string, args map[string][]string) {
-	log.Print(info)
-	for i, v := range args {
-		log.Printf("%s:%v", i, v)
-	}
+	Log.Debugf("%s:%v", info, args)
 }
 

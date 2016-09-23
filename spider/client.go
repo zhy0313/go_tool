@@ -6,20 +6,21 @@
 package spider
 
 import (
-	"log"
 	"net/http"
 	"net/http/cookiejar"
 )
 
+//cookie record
 func NewJar() *cookiejar.Jar {
 	cookieJar, _ := cookiejar.New(nil)
 	return cookieJar
 }
 
 var (
+	//client to ask get or post
 	Client = &http.Client{
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
-			log.Printf("------------------自动跳转跳转%v-------------------\n", req.URL)
+			Log.Debugf("-----------Redirect:%v------------", req.URL)
 			return nil
 		},
 		Jar: NewJar(),
@@ -55,5 +56,8 @@ func MergeCookie(before []*http.Cookie, after []*http.Cookie) []*http.Cookie {
 
 // 克隆头部
 func CloneHeader(h map[string][]string) map[string][]string {
+	if h == nil {
+		h = SpiderHeader
+	}
 	return CopyM(h)
 }
