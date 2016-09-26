@@ -10,10 +10,23 @@ import (
 	"time"
 )
 
+var (
+	fs = "2006-01-02 15:04:05"
+	config = HbaseConfig{
+		Master: "192.168.11.73:60000",
+		Zkport: "2181",
+		Zkquorum: "192.168.11.73",
+	}
+	clients = New(config)
+	client = clients.Client
+)
+
+func init() {
+	clients.Open()
+	client = clients.Client
+}
 func TestHbaseScan(t *testing.T) {
-	fs := "2006-01-02 15:04:05"
 	Convey("测试scan\n", t, func() {
-		client := GetInfoDb()
 
 		//表名
 		hbasetable := "dnax:key_info_mz_campaign_spot"
@@ -60,11 +73,10 @@ func TestHbaseScan(t *testing.T) {
 }
 func TestHbaseCommom(t *testing.T) {
 	Convey("测试myhbase", t, func() {
-		client := GetInfoDb()
 		hbasetable := "dnax:info_title"
 		rowkey := "test1dd"
 		hbasecol := "clicki-v4:test_qualx"
-		result, err := GetResult(client, hbasetable, rowkey)
+		result, err := clients.GetResult(hbasetable, rowkey)
 		if err != nil {
 			fmt.Printf("在表 [%s] 中找不到 [%s] 的信息,执行hbase错误:%s", hbasetable, rowkey, err.Error())
 		}

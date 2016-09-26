@@ -11,10 +11,25 @@ import (
 	"log"
 )
 
+type MysqlConfig struct {
+	Username string
+	Password string
+	Ip       string
+	Port     string
+	Dbname   string
+}
+type Mysql struct {
+	Config MysqlConfig
+	Client *sql.DB
+}
+
+func New(config MysqlConfig) Mysql {
+	return Mysql{Config:config}
+}
 //插入数据
 //Insert Data
-func Insert(db *sql.DB, prestring string, parm []interface{}) (int64, error) {
-	stmt, err := db.Prepare(prestring)
+func (db *Mysql)Insert(prestring string, parm ...interface{}) (int64, error) {
+	stmt, err := db.Client.Prepare(prestring)
 	if err != nil {
 		//log.Println(err)
 		return 0, err
@@ -24,32 +39,31 @@ func Insert(db *sql.DB, prestring string, parm []interface{}) (int64, error) {
 		return 0, err
 	}
 	defer stmt.Close()
-	num,err:=R.RowsAffected()
-	return num,err
+	num, err := R.RowsAffected()
+	return num, err
 
 }
 
 //打开数据库连接
 //username:password@protocol(address)/dbname?param=value
-func Open(username string, password string, ip string, dbname string) *sql.DB {
-	db, err := sql.Open("mysql", username + ":" + password + "@tcp(" + ip + ":3306)/" + dbname + "?charset=utf8")
+func (db *Mysql)Open(){
+	dbs, err := sql.Open("mysql", db.Config.Username + ":" + db.Config.Password + "@tcp(" + db.Config.Ip + ":" + db.Config.Port + ")/" + db.Config.Dbname + "?charset=utf8")
 	if err != nil {
 		log.Fatalf("Open database error: %s\n", err)
 	}
 
-	err = db.Ping()
+	err = dbs.Ping()
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-
-	return db
+	db.Client = dbs
 }
 
 //查询数据库
-func Select(db *sql.DB, prestring string, parm []interface{}) (returnrows []map[string]interface{},err error) {
+func (db *Mysql)Select(prestring string, parm ...interface{}) (returnrows []map[string]interface{}, err error) {
 	returnrows = []map[string]interface{}{}
 	returnrow := map[string]interface{}{}
-	rows, err := db.Query(prestring, parm...)
+	rows, err := db.Client.Query(prestring, parm...)
 	if err != nil {
 		return
 	}
